@@ -1,0 +1,320 @@
+/* --- Modern Style Tokens (CSS Variables) --- */
+:root {
+    --bg-base: #f9f6f0;         /* Warm oat milk beige */
+    --bg-surface: #ffffff;      /* Crisp clean white for cards */
+    --bg-secondary: #f0eae1;    /* Deep rich beige for structural blocks */
+    --text-main: #261f1d;       /* Espresso dark brown */
+    --text-muted: #6e625e;      /* Warm taupe for secondary text */
+    --accent-vibrant: #cf5c36;  /* Vibrant terracotta orange-brown */
+    --accent-hover: #b04724;    
+    --radius-lg: 16px;          /* Smooth modern rounded corners */
+    --radius-md: 8px;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Global Resets & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-base);
+    line-height: 1.6;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Header & Navigation (Sleek Flexbox layout) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 8%;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(110, 98, 94, 0.1);
+}
+
+.logo h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
+}
+
+.navigation a {
+    text-decoration: none;
+    color: var(--text-muted);
+    margin-left: 2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    padding: 0.2rem 0;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-vibrant);
+    transition: var(--transition-smooth);
+}
+
+.navigation a:hover {
+    color: var(--accent-vibrant);
+}
+
+.navigation a:hover::after {
+    width: 100%;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+.hero-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(38, 31, 29, 0.3), rgba(38, 31, 29, 0.7)); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.hero-overlay h2 {
+    font-family: 'Georgia', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+    color: #ffffff;
+}
+
+.hero-overlay p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+/* --- Content Sections Structure --- */
+.about-section, .articles-section, .books-section, .shop-section, .contact-section {
+    padding: 6rem 8%;
+    text-align: center;
+}
+
+.articles-section, .shop-section {
+    background-color: var(--bg-secondary);
+}
+
+h2 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.shop-section p, .contact-section p {
+    max-width: 750px;
+    margin: 0 auto 1.5rem auto;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+}
+
+.email-text {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    color: var(--accent-vibrant) !important;
+}
+
+/* --- EXACT PART THAT WAS ADDED/CHANGED FOR THE FOUNDER THUMBNAIL layout --- */
+.about-content {
+    display: flex;
+    align-items: flex-start;   /* Aligns the image with the top of the text block */
+    justify-content: center;
+    gap: 1.5rem;               /* Clean spacing between image and paragraphs */
+    max-width: 750px;          /* Perfectly optimized paragraph line length */
+    margin: 2.5rem auto 0 auto;
+    text-align: left;
+}
+
+.founder-photo {
+    width: 7.5rem;             /* Increased from 5.5rem to make it a bit larger */
+    height: 7.5rem;            /* Increased from 5.5rem to keep it a perfect square */
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(38, 31, 29, 0.05);
+    border: 1px solid rgba(110, 98, 94, 0.15);
+    flex-shrink: 0;            
+    margin-top: 0.25rem;
+
+}
+
+.about-text p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+/* -------------------------------------------------------------------------- */
+
+/* --- Articles Container Layout (Flexbox setup) --- */
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 3.5rem;
+}
+
+.article-card {
+    background: var(--bg-surface);
+    padding: 2.5rem;
+    flex: 1 1 calc(50% - 2rem);
+    min-width: 300px;
+    text-align: left;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 30px rgba(38, 31, 29, 0.03);
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(110, 98, 94, 0.05);
+}
+
+.article-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(38, 31, 29, 0.08);
+}
+
+.article-card h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.article-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* --- Books Layout (CSS Grid setup) --- */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+}
+
+.book-card {
+    background: var(--bg-surface);
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(38, 31, 29, 0.03);
+    transition: var(--transition-smooth);
+    border-top: 4px solid var(--accent-vibrant);
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(38, 31, 29, 0.1);
+}
+
+.book-card h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.book-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--text-main);
+    color: var(--bg-secondary);
+    text-align: center;
+    padding: 3rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+/* --- Responsive Layout (Media Queries) --- */
+@media (max-width: 992px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .navigation a {
+        margin: 0 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-overlay h2 {
+        font-size: 2.2rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        align-items: center;   /* Stacks the image neatly above the paragraph on phone views */
+        text-align: center;
+        gap: 1.2rem;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .article-card {
+        flex: 1 1 100%;
+        padding: 1.8rem;
+    }
+    
+    .about-section, .articles-section, .books-section, .shop-section, .contact-section {
+        padding: 4rem 5%;
+    }
+}
