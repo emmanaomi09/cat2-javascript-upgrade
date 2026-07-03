@@ -32,3 +32,53 @@ articlesData.forEach(article => {
 
     articlesContainer.appendChild(articleCard);
 });
+
+// Wishlist functionality   
+const wishlistInput = document.getElementById('wishlist-input');
+const wishlistAddBtn = document.getElementById('wishlist-add-btn');
+const wishlistUl = document.getElementById('wishlist-ul');
+
+
+wishlistAddBtn.addEventListener('click', () => {
+    const itemText = wishlistInput.value.trim();
+
+    
+    if (itemText === "") {
+        alert("Please type a book title before adding!");
+        return;
+    }
+
+    
+    const li = document.createElement('li');
+    li.className = 'wishlist-item';
+    li.style.display = 'flex';
+    li.style.justifyContent = 'space-between';
+    li.style.alignItems = 'center';
+    li.style.padding = '8px';
+    li.style.borderBottom = '1px solid #eee';
+    li.style.maxWidth = '400px';
+
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = itemText;
+    li.appendChild(textSpan);
+
+   
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = "❌ Remove";
+    removeBtn.style.marginLeft = '10px';
+    removeBtn.style.cursor = 'pointer';
+    removeBtn.style.backgroundColor = '#ffecec';
+    removeBtn.style.border = '1px solid #ffcccc';
+    removeBtn.style.borderRadius = '3px';
+    removeBtn.style.padding = '3px 8px';
+
+    removeBtn.addEventListener('click', () => {
+        li.remove();
+    });
+
+    li.appendChild(removeBtn);
+    wishlistUl.appendChild(li);
+
+    wishlistInput.value = "";
+});
