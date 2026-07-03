@@ -46,7 +46,7 @@ function renderItemToDOM(text) {
     li.appendChild(textSpan);
 
     const removeBtn = document.createElement('button');
-    removeBtn.textContent = "❌ Remove";
+    removeBtn.textContent = "Remove";
     removeBtn.style.cursor = 'pointer';
     
     // Remove button click handler
@@ -147,14 +147,14 @@ if (contactForm && formFeedback) {
 
         
         if (nameValue === "" || emailValue === "" || messageValue === "") {
-            formFeedback.textContent = "❌ Error: All fields are required before sending.";
+            formFeedback.textContent = " Error: All fields are required before sending.";
             formFeedback.style.color = "red";
             return; 
         }
 
         // 4. Evaluation Check B: Is it a syntactically realistic email?
         if (!emailValue.includes('@') || !emailValue.includes('.')) {
-            formFeedback.textContent = "❌ Error: Please enter a valid email address containing an '@' and a domain extension (e.g. .com).";
+            formFeedback.textContent = " Error: Please enter a valid email address containing an '@' and a domain extension (e.g. .com).";
             formFeedback.style.color = "red";
             return; 
         }
@@ -166,7 +166,39 @@ if (contactForm && formFeedback) {
         
         contactForm.reset();
     });
-    console.log("✅ Feature 3: Form validation handler attached successfully.");
+    console.log(" Feature 3: Form validation handler attached successfully.");
 } else {
-    console.error("❌ Feature 3 Error: Form elements missing from HTML template.");
+    console.error("Feature 3 Error: Form elements missing from HTML template.");
 }
+
+// Caption visibility styles (injected because this file is JS-only)
+const captionStyle = document.createElement('style');
+captionStyle.textContent = `
+/* Hidden by default */
+.hidden-caption {
+    display: none;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    border-left: 3px solid #fff;
+    font-style: italic;
+}
+
+/* Revealed when clicked */
+.show-caption {
+    display: block;
+}
+`;
+document.head.appendChild(captionStyle);
+// Click event listener to toggle the classes we just injected
+const bannerImg = document.getElementById('banner-img');
+const bannerCaption = document.getElementById('banner-caption');
+
+if (bannerImg && bannerCaption) {
+    bannerImg.addEventListener('click', () => {
+        bannerCaption.classList.toggle('show-caption');
+        console.log("✅ Feature 5: Banner caption toggled successfully!");
+    });
+}
+
