@@ -82,3 +82,46 @@ wishlistAddBtn.addEventListener('click', () => {
 
     wishlistInput.value = "";
 });
+
+// Contact form validation
+const contactForm = document.getElementById('contact-form');
+const contactName = document.getElementById('contact-name');
+const contactEmail = document.getElementById('contact-email');
+const contactMessage = document.getElementById('contact-message');
+const formFeedback = document.getElementById('form-feedback');
+
+if (contactForm && formFeedback) {
+    contactForm.addEventListener('submit', (event) => {
+        
+        event.preventDefault();
+
+        
+        const nameValue = contactName.value.trim();
+        const emailValue = contactEmail.value.trim();
+        const messageValue = contactMessage.value.trim();
+
+        
+        if (nameValue === "" || emailValue === "" || messageValue === "") {
+            formFeedback.textContent = "❌ Error: All fields are required before sending.";
+            formFeedback.style.color = "red";
+            return; 
+        }
+
+        // 4. Evaluation Check B: Is it a syntactically realistic email?
+        if (!emailValue.includes('@') || !emailValue.includes('.')) {
+            formFeedback.textContent = "❌ Error: Please enter a valid email address containing an '@' and a domain extension (e.g. .com).";
+            formFeedback.style.color = "red";
+            return; 
+        }
+
+        
+        formFeedback.textContent = `Thank you, ${nameValue}! Your message has been sent to Pen & Post successfully. ✨`;
+        formFeedback.style.color = "green";
+
+        
+        contactForm.reset();
+    });
+    console.log("✅ Feature 3: Form validation handler attached successfully.");
+} else {
+    console.error("❌ Feature 3 Error: Form elements missing from HTML template.");
+}

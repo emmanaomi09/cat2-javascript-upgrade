@@ -83,10 +83,29 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+       <section id="contact" class="contact-section">
             <h2>Contact Us</h2>
             <p>If you have any questions, suggestions, or would like to contribute to Pen & Post, please feel free to reach out to us:</p>
-            <p class="email-text">Email: <strong>mikewamugo@penandpost.com</strong></p>
+            
+            <form id="contact-form" style="max-width: 400px; margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+                <div>
+                    <label for="contact-name" style="display:block; margin-bottom:5px; font-weight: bold;">Name:</label>
+                    <input type="text" id="contact-name" style="width:100%; padding:8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label for="contact-email" style="display:block; margin-bottom:5px; font-weight: bold;">Email:</label>
+                    <input type="text" id="contact-email" style="width:100%; padding:8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+                <div>
+                    <label for="contact-message" style="display:block; margin-bottom:5px; font-weight: bold;">Message:</label>
+                    <textarea id="contact-message" rows="4" style="width:100%; padding:8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" style="padding: 10px 15px; background-color: #333; color: white; border: none; border-radius: 4px; cursor: pointer; align-self: flex-start;">Send Message</button>
+            </form>
+            
+            <div id="form-feedback" style="margin-top: 15px; font-weight: bold; min-height: 20px;"></div>
+
+            <p class="email-text" style="margin-top: 20px;">Email: <strong>mikewamugo@penandpost.com</strong></p>
         </section>
     </main>
 
