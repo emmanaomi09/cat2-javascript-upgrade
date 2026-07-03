@@ -1,0 +1,20 @@
+==========================================
+CAT 2 IMPLEMENTATION NOTES - PEN & POST
+==========================================
+
+Feature 1: Loop-Rendered Articles
+- Stored article list in an array of objects inside script.js using mandatory 'name' properties.
+- Rendered objects dynamically to the DOM container via .forEach() looping.
+
+Feature 2 & 4: Wishlist with localStorage Persistence
+- Created interactive element addition using createElement() and appendChild().
+- Created interactive item removal using remove().
+- Wired state array to persist across page reloads using JSON.stringify() / JSON.parse() via localStorage.
+
+Feature 3: Form Handling with Validation Feedback
+- Handled contact form submission via event.preventDefault().
+- Verified field inputs and emails, rendering text confirmation/rejection blocks dynamically to the screen.
+
+Feature 5: Click-to-Reveal Banner Caption
+- Created a click event listener on the main banner image element.
+- Toggles the dynamic display class via classList.toggle() to reveal an underlying project introduction.
