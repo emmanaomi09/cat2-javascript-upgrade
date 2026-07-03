@@ -17,20 +17,65 @@ const articlesData = [
     }
 ];
 
+// ==========================================
+// FEATURE 2 & 4: Wishlist with localStorage Persistence
+// ==========================================
+const wishlistInput = document.getElementById('wishlist-input');
+const wishlistAddBtn = document.getElementById('wishlist-add-btn');
+const wishlistUl = document.getElementById('wishlist-ul');
 
-const articlesContainer = document.getElementById('dynamic-articles-container');
+// 1. Load existing items from localStorage on page load
+let savedWishlist = JSON.parse(localStorage.getItem('myWishlist')) || [];
 
-articlesData.forEach(article => {
+// 2. Render those saved items immediately
+savedWishlist.forEach(itemText => {
+    renderItemToDOM(itemText);
+});
+
+// Helper function to handle DOM creation and insertion
+function renderItemToDOM(text) {
+    const li = document.createElement('li');
+    li.className = 'wishlist-item';
+    li.style.display = 'flex';
+    li.style.justifyContent = 'space-between';
+    li.style.padding = '8px';
+    li.style.borderBottom = '1px solid #eee';
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    li.appendChild(textSpan);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = "❌ Remove";
+    removeBtn.style.cursor = 'pointer';
     
-    const articleCard = document.createElement('article');
-    articleCard.className = 'article-card';
+    // Remove button click handler
+    removeBtn.addEventListener('click', () => {
+        li.remove();
+        // Update our array and save the new state to localStorage
+        savedWishlist = savedWishlist.filter(item => item !== text);
+        localStorage.setItem('myWishlist', JSON.stringify(savedWishlist));
+    });
 
-    articleCard.innerHTML = `
-        <h3>${article.name}</h3>
-        <p>${article.description}</p>
-    `;
+    li.appendChild(removeBtn);
+    wishlistUl.appendChild(li);
+}
 
-    articlesContainer.appendChild(articleCard);
+// 3. Event handler for adding new items
+wishlistAddBtn.addEventListener('click', () => {
+    const textValue = wishlistInput.value.trim();
+    
+    if (textValue !== "") {
+        // Add to DOM
+        renderItemToDOM(textValue);
+        
+        // Push to local array and save to localStorage
+        savedWishlist.push(textValue);
+        localStorage.setItem('myWishlist', JSON.stringify(savedWishlist));
+        
+        // Clear input field
+        wishlistInput.value = '';
+    }
 });
 
 // Wishlist functionality   
